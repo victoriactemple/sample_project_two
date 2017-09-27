@@ -7,6 +7,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+const methodOverride = require('method-override')
+
+
 var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI); 
 
@@ -33,6 +36,7 @@ app.set('view engine', 'hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride('_method'))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -42,6 +46,8 @@ const companyController = require('./routes/companyController')
 app.use('/companies', companyController)
 const snowboardController = require('./routes/snowboardController')
 app.use('/companies/:companyId/snowboards', snowboardController)
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
