@@ -1,0 +1,8 @@
+{{#each companies}}    
+    
+    <div>
+        {{this.name}} - {{this.country}}
+        {{!-- these links need to full url starting at the beginning  --}}
+        <a href="/companies/{{this.id}}/snowboards">{{this.name}}'s Snowboards</a>
+    </div>
+{{/each}}
